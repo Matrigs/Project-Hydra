@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
 	public Animator playerAnim;
 	public Camera cam;
 
-	Vector2 movement;
+	public Vector2 movement;
 	Vector2 mousePos;
 
     // Update is called once per frame
@@ -24,14 +24,16 @@ public class PlayerMovement : MonoBehaviour
 		playerAnim.SetFloat("Speed", movement.sqrMagnitude);
 
 		//aiming
-		mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+		//mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 	}
 
 	void FixedUpdate() {
+		//walking
 		playerRB.MovePosition(playerRB.position + movement * moveSpeed * Time.fixedDeltaTime);
 
-		Vector2 lookDir = mousePos - playerRB.position;
-		float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-		playerRB.rotation = angle;
+		//aiming
+		//Vector2 lookDir = mousePos - playerRB.position;
+		//float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
+		//playerRB.rotation = angle;
 	}
 }
