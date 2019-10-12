@@ -14,14 +14,21 @@ public class Aiming : MonoBehaviour
 
 		//aiming
 		mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+
+		//This makes the wand rotate aroud the player
+		mousePos.Set(mousePos.x, mousePos.y);
+		transform.localPosition = mousePos.normalized;
+
+		//This makes the wand follow the player
 		playerMovement.movement.x = Input.GetAxisRaw("Horizontal");
 		playerMovement.movement.y = Input.GetAxisRaw("Vertical");
 	}
-
+	
 	void FixedUpdate() {
 		wandRB.MovePosition(wandRB.position + playerMovement.movement * playerMovement.moveSpeed * Time.fixedDeltaTime);
 
-		Vector2 lookDir = mousePos - wandRB.position;
+		//This makes the wand point towards firing angle
+		Vector2 lookDir = mousePos;
 		float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
 		wandRB.rotation = angle;
 	}
