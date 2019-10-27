@@ -10,4 +10,8 @@ public class GameOverMenu : MonoBehaviour
 		SceneManager.LoadScene(scene.name);
 	}
 
+	public void ReturnToMenu() {
+		SceneManager.LoadScene(0);
+	}
+
 }

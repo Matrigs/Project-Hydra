@@ -10,9 +10,8 @@ public class HydraBehavior : MonoBehaviour
 		if (collision.gameObject.tag == "Bullet") {
 
 			for (int i = 0; i < spawnHydras.Count; i++) {
-				spawnHydras[i].Respawn();
+				spawnHydras[i].HydraDeath();
 			}
-			Destroy(gameObject);
 		}
 	}
 }

@@ -3,9 +3,11 @@
 public class GameManager : MonoBehaviour
 {
 	public GameObject gameOverMenu;
+	public GameObject pauseMenu;
 
 	void Start() {
 		gameOverMenu.SetActive(false);
+		pauseMenu.SetActive(false);
 	}
 
 	public void EndGame() {
@@ -15,5 +17,14 @@ public class GameManager : MonoBehaviour
 
 	void Restart() {
 		gameOverMenu.SetActive(true);
+	}
+
+	public void PauseGame() {
+		Debug.Log("Paused");
+		Pause();
+	}
+
+	void Pause() {
+		pauseMenu.SetActive(true);
 	}
 }
