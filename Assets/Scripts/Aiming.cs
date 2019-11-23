@@ -6,30 +6,21 @@ public class Aiming : MonoBehaviour
 {
 	public PlayerMovement playerMovement;
 
-	Vector2 mousePos;
-	public Rigidbody2D wandRB;
+	public Rigidbody2D orbRB;
 	public Camera cam;
+	Vector3 mousePos;
 
 	void Update() {
-
 		//aiming
-		mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+		mousePos = cam.ScreenToWorldPoint(new Vector3 (Input.mousePosition.x, Input.mousePosition.y, cam.transform.position.z));
+		orbRB.transform.position = playerMovement.playerRB.position;
 
-		//This makes the wand rotate aroud the player
-		mousePos.Set(mousePos.x, mousePos.y);
-		transform.localPosition = mousePos.normalized;
-
-		//This makes the wand follow the player
-		playerMovement.movement.x = Input.GetAxisRaw("Horizontal");
-		playerMovement.movement.y = Input.GetAxisRaw("Vertical");
 	}
 	
 	void FixedUpdate() {
-		wandRB.MovePosition(wandRB.position + playerMovement.movement * playerMovement.moveSpeed * Time.fixedDeltaTime);
-
-		//This makes the wand point towards firing angle
-		Vector2 lookDir = mousePos;
+		//this makes the orb rotate
+		Vector3 lookDir = mousePos - orbRB.transform.position;
 		float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-		wandRB.rotation = angle;
+		orbRB.transform.rotation = Quaternion.Euler(0.0f, 0.0f, angle);
 	}
 }

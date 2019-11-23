@@ -11,10 +11,9 @@ public class PlayerMovement : MonoBehaviour
 	public Camera cam;
 
 	public Vector2 movement;
-	Vector2 mousePos;
 
-    // Update is called once per frame
-    void Update() {
+	// Update is called once per frame
+	void Update() {
 		//walking
 		movement.x = Input.GetAxisRaw("Horizontal");
 		movement.y = Input.GetAxisRaw("Vertical");
@@ -22,18 +21,10 @@ public class PlayerMovement : MonoBehaviour
 		playerAnim.SetFloat("Horizontal", movement.x);
 		playerAnim.SetFloat("Vertical", movement.y);
 		playerAnim.SetFloat("Speed", movement.sqrMagnitude);
-
-		//aiming
-		//mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 	}
 
 	void FixedUpdate() {
 		//walking
 		playerRB.MovePosition(playerRB.position + movement * moveSpeed * Time.fixedDeltaTime);
-
-		//aiming
-		//Vector2 lookDir = mousePos - playerRB.position;
-		//float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-		//playerRB.rotation = angle;
 	}
 }
