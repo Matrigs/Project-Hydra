@@ -136,7 +136,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &3123865478753520264
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -230,6 +230,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementScript: {fileID: 3123865478753520259}
+  aimScript: {fileID: 3123865479739738619}
+  shootScript: {fileID: 3123865478753520262}
 --- !u!1 &3123865479739738617
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,7 +327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 3123865478753520259}
-  wandRB: {fileID: 3123865479739738621}
+  orbRB: {fileID: 3123865479739738621}
   cam: {fileID: 0}
 --- !u!50 &3123865479739738621
 Rigidbody2D:
@@ -347,4 +349,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4

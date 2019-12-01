@@ -6,21 +6,27 @@ public class Aiming : MonoBehaviour
 {
 	public PlayerMovement playerMovement;
 
-	public Rigidbody2D orbRB;
-	public Camera cam;
-	Vector3 mousePos;
+	//public Rigidbody2D orbRB;
+	//public Camera cam;
+	//Vector3 mousePos;
+
+	public Transform target;
+	public float fRadius = 3.0f;
+	private Transform pivot;
+
+	void Start() {
+		pivot = new GameObject().transform;
+		transform.parent = pivot;
+	}
 
 	void Update() {
 		//aiming
-		mousePos = cam.ScreenToWorldPoint(new Vector3 (Input.mousePosition.x, Input.mousePosition.y, cam.transform.position.z));
-		orbRB.transform.position = playerMovement.playerRB.position;
+		Vector3 v3Pos = Camera.main.WorldToScreenPoint(target.position);
+		v3Pos = Input.mousePosition - v3Pos;
+		float angle = Mathf.Atan2(v3Pos.y, v3Pos.x) * Mathf.Rad2Deg;
 
-	}
-	
-	void FixedUpdate() {
-		//this makes the orb rotate
-		Vector3 lookDir = mousePos - orbRB.transform.position;
-		float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-		orbRB.transform.rotation = Quaternion.Euler(0.0f, 0.0f, angle);
+		//rotating the orb around the character as a pivot
+		pivot.position = target.position;
+		pivot.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 	}
 }
